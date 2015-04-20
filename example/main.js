@@ -24,11 +24,11 @@ $(function() {
             UI.$btnStart.prop('disabled', true);
             UI.$btnAbort.prop('disabled', false);
 
-            speed[rawModule].start();
+            speed.module(rawModule).start();
 
             // The latency module doesn't have a start event, we must trigger it manually.
             if (rawModule == 'latency') {
-                speed[rawModule].trigger('start');
+                speed.module(rawModule).start();
             }
         },
 
@@ -51,8 +51,8 @@ $(function() {
         },
 
         abort: function() {
-            speed.upload.abort();
-            speed.download.abort();
+            speed.module('upload').abort();
+            speed.module('download').abort();
         },
 
         notice: function(text, newSection) {
@@ -108,10 +108,10 @@ $(function() {
         UI.stop();
     }
 
-    speed.upload.on('start', start).on('progress', progress).on('restart', UI.restart).on('end', end);
-    speed.download.on('start', start).on('progress', progress).on('restart', UI.restart).on('end', end);
+    speed.module('upload').on('start', start).on('progress', progress).on('restart', UI.restart).on('end', end);
+    speed.module('download').on('start', start).on('progress', progress).on('restart', UI.restart).on('end', end);
 
-    speed.latency
+    speed.('latency')
         .on('start', start)
         .on('end', function(avg, all) {
             all = all.map(function(latency) {
