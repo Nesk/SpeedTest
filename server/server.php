@@ -1,4 +1,6 @@
 <?php
+
+// The server will respond to origins from all locations, replace * with your url / ip to restrict.
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 		
