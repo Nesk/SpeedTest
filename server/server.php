@@ -1,5 +1,7 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+		
 mb_internal_encoding('UTF-8');
 
 // The connection must be closed after each response. Allowing the client to correctly estimate the network latency.
